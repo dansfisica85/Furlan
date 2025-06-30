@@ -1,0 +1,329 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-30T17:54:40.464Z",
+    "version": "1.0",
+    "source": "Super Mario Bros - Pirâmide de Maslow Game",
+    "score": 1340,
+    "repository": "https://github.com/dansfisica85/Furlan"
+  },
+  "player": {
+    "name": "Davi Antonino",
+    "character": "yoshi",
+    "completed_at": "2025-06-30T17:54:40.456Z"
+  },
+  "summary": {
+    "fisiologicas": 53,
+    "seguranca": 63,
+    "sociais": 57,
+    "estima": 63,
+    "autorrealizacao": 77,
+    "pontuacao_total": 1340
+  },
+  "detailed_results": {
+    "1": {
+      "score": 16,
+      "maxScore": 30,
+      "percentage": 53
+    },
+    "2": {
+      "score": 19,
+      "maxScore": 30,
+      "percentage": 63
+    },
+    "3": {
+      "score": 17,
+      "maxScore": 30,
+      "percentage": 57
+    },
+    "4": {
+      "score": 19,
+      "maxScore": 30,
+      "percentage": 63
+    },
+    "5": {
+      "score": 23,
+      "maxScore": 30,
+      "percentage": 77
+    }
+  },
+  "answers": [
+    4,
+    1,
+    4,
+    5,
+    1,
+    1,
+    4,
+    5,
+    2,
+    5,
+    1,
+    2,
+    3,
+    5,
+    2,
+    1,
+    5,
+    1,
+    5,
+    1,
+    2,
+    2,
+    4,
+    5,
+    3,
+    5,
+    5,
+    3,
+    5,
+    2
+  ],
+  "questions_and_answers": [
+    {
+      "question_number": 1,
+      "level": 1,
+      "level_name": "Necessidades Fisiológicas",
+      "question_text": "Eu me alimento bem e regularmente.",
+      "answer_value": 4,
+      "answer_text": "Frequentemente"
+    },
+    {
+      "question_number": 2,
+      "level": 1,
+      "level_name": "Necessidades Fisiológicas",
+      "question_text": "Eu tenho um local seguro e confortável para dormir.",
+      "answer_value": 1,
+      "answer_text": "Nunca"
+    },
+    {
+      "question_number": 3,
+      "level": 1,
+      "level_name": "Necessidades Fisiológicas",
+      "question_text": "Eu consigo descansar o suficiente.",
+      "answer_value": 4,
+      "answer_text": "Frequentemente"
+    },
+    {
+      "question_number": 4,
+      "level": 1,
+      "level_name": "Necessidades Fisiológicas",
+      "question_text": "Eu me sinto saudável na maior parte do tempo.",
+      "answer_value": 5,
+      "answer_text": "Sempre"
+    },
+    {
+      "question_number": 5,
+      "level": 1,
+      "level_name": "Necessidades Fisiológicas",
+      "question_text": "Eu bebo água em quantidade suficiente.",
+      "answer_value": 1,
+      "answer_text": "Nunca"
+    },
+    {
+      "question_number": 6,
+      "level": 1,
+      "level_name": "Necessidades Fisiológicas",
+      "question_text": "Eu tenho acesso fácil a um banheiro quando preciso.",
+      "answer_value": 1,
+      "answer_text": "Nunca"
+    },
+    {
+      "question_number": 7,
+      "level": 2,
+      "level_name": "Necessidades de Segurança",
+      "question_text": "Eu me sinto seguro(a) em casa.",
+      "answer_value": 4,
+      "answer_text": "Frequentemente"
+    },
+    {
+      "question_number": 8,
+      "level": 2,
+      "level_name": "Necessidades de Segurança",
+      "question_text": "Eu me sinto seguro(a) na escola/universidade.",
+      "answer_value": 5,
+      "answer_text": "Sempre"
+    },
+    {
+      "question_number": 9,
+      "level": 2,
+      "level_name": "Necessidades de Segurança",
+      "question_text": "Eu me preocupo com minha saúde e bem-estar físico.",
+      "answer_value": 2,
+      "answer_text": "Raramente"
+    },
+    {
+      "question_number": 10,
+      "level": 2,
+      "level_name": "Necessidades de Segurança",
+      "question_text": "Eu me sinto seguro(a) em relação ao meu futuro financeiro.",
+      "answer_value": 5,
+      "answer_text": "Sempre"
+    },
+    {
+      "question_number": 11,
+      "level": 2,
+      "level_name": "Necessidades de Segurança",
+      "question_text": "Eu sinto que sou protegido(a) de perigos ou ameaças.",
+      "answer_value": 1,
+      "answer_text": "Nunca"
+    },
+    {
+      "question_number": 12,
+      "level": 2,
+      "level_name": "Necessidades de Segurança",
+      "question_text": "Minha família me proporciona um ambiente estável.",
+      "answer_value": 2,
+      "answer_text": "Raramente"
+    },
+    {
+      "question_number": 13,
+      "level": 3,
+      "level_name": "Necessidades Sociais",
+      "question_text": "Eu me sinto amado(a) e valorizado(a) pela minha família.",
+      "answer_value": 3,
+      "answer_text": "Às vezes"
+    },
+    {
+      "question_number": 14,
+      "level": 3,
+      "level_name": "Necessidades Sociais",
+      "question_text": "Eu tenho amigos com quem posso contar.",
+      "answer_value": 5,
+      "answer_text": "Sempre"
+    },
+    {
+      "question_number": 15,
+      "level": 3,
+      "level_name": "Necessidades Sociais",
+      "question_text": "Eu me sinto parte de um grupo ou comunidade.",
+      "answer_value": 2,
+      "answer_text": "Raramente"
+    },
+    {
+      "question_number": 16,
+      "level": 3,
+      "level_name": "Necessidades Sociais",
+      "question_text": "Eu consigo expressar meus sentimentos para pessoas próximas.",
+      "answer_value": 1,
+      "answer_text": "Nunca"
+    },
+    {
+      "question_number": 17,
+      "level": 3,
+      "level_name": "Necessidades Sociais",
+      "question_text": "Eu me sinto confortável em fazer novas amizades.",
+      "answer_value": 5,
+      "answer_text": "Sempre"
+    },
+    {
+      "question_number": 18,
+      "level": 3,
+      "level_name": "Necessidades Sociais",
+      "question_text": "Eu sinto que sou aceito(a) como sou pelos meus colegas.",
+      "answer_value": 1,
+      "answer_text": "Nunca"
+    },
+    {
+      "question_number": 19,
+      "level": 4,
+      "level_name": "Necessidades de Estima",
+      "question_text": "Eu me sinto confiante em minhas habilidades.",
+      "answer_value": 5,
+      "answer_text": "Sempre"
+    },
+    {
+      "question_number": 20,
+      "level": 4,
+      "level_name": "Necessidades de Estima",
+      "question_text": "Eu me sinto respeitado(a) pelos meus professores/colegas.",
+      "answer_value": 1,
+      "answer_text": "Nunca"
+    },
+    {
+      "question_number": 21,
+      "level": 4,
+      "level_name": "Necessidades de Estima",
+      "question_text": "Eu recebo reconhecimento pelos meus esforços.",
+      "answer_value": 2,
+      "answer_text": "Raramente"
+    },
+    {
+      "question_number": 22,
+      "level": 4,
+      "level_name": "Necessidades de Estima",
+      "question_text": "Eu me sinto capaz de alcançar meus objetivos.",
+      "answer_value": 2,
+      "answer_text": "Raramente"
+    },
+    {
+      "question_number": 23,
+      "level": 4,
+      "level_name": "Necessidades de Estima",
+      "question_text": "Eu tenho orgulho das minhas conquistas.",
+      "answer_value": 4,
+      "answer_text": "Frequentemente"
+    },
+    {
+      "question_number": 24,
+      "level": 4,
+      "level_name": "Necessidades de Estima",
+      "question_text": "Eu me sinto valorizado(a) por quem eu sou.",
+      "answer_value": 5,
+      "answer_text": "Sempre"
+    },
+    {
+      "question_number": 25,
+      "level": 5,
+      "level_name": "Necessidades de Autorrealização",
+      "question_text": "Eu me sinto motivado(a) a aprender coisas novas.",
+      "answer_value": 3,
+      "answer_text": "Às vezes"
+    },
+    {
+      "question_number": 26,
+      "level": 5,
+      "level_name": "Necessidades de Autorrealização",
+      "question_text": "Eu busco desenvolver meu potencial ao máximo.",
+      "answer_value": 5,
+      "answer_text": "Sempre"
+    },
+    {
+      "question_number": 27,
+      "level": 5,
+      "level_name": "Necessidades de Autorrealização",
+      "question_text": "Eu me sinto criativo(a) e gosto de expressar minhas ideias.",
+      "answer_value": 5,
+      "answer_text": "Sempre"
+    },
+    {
+      "question_number": 28,
+      "level": 5,
+      "level_name": "Necessidades de Autorrealização",
+      "question_text": "Eu encontro significado e propósito no que faço.",
+      "answer_value": 3,
+      "answer_text": "Às vezes"
+    },
+    {
+      "question_number": 29,
+      "level": 5,
+      "level_name": "Necessidades de Autorrealização",
+      "question_text": "Eu me sinto em busca de crescimento pessoal contínuo.",
+      "answer_value": 5,
+      "answer_text": "Sempre"
+    },
+    {
+      "question_number": 30,
+      "level": 5,
+      "level_name": "Necessidades de Autorrealização",
+      "question_text": "Eu me dedico a atividades que me trazem satisfação profunda.",
+      "answer_value": 2,
+      "answer_text": "Raramente"
+    }
+  ],
+  "statistics": {
+    "total_questions": 30,
+    "answered_questions": 30,
+    "average_score": 3.1333333333333333,
+    "completion_rate": 100
+  }
+}
