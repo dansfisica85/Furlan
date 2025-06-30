@@ -1,0 +1,152 @@
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>🎮 Super Mario Bros - Game da Pirâmide de Maslow 🎮</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="animations.css">
+  <style>
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+  </style>
+  <link rel="stylesheet" href="game-ui.css">
+</head>
+<body>
+  <!-- Mario-style score display -->
+  <div id="score-display" style="position: fixed; top: 20px; left: 20px; font-size: 1.5rem; color: #FFD700; text-shadow: 2px 2px 0px #000; z-index: 1000; font-family: 'Courier New', monospace;">
+    Score: 0
+  </div>
+  
+  <div id="game-container">
+    <!-- Intro Section -->
+    <div id="intro-section" class="game-section active">
+      <div class="content-container">
+        <h1>🎮 Super Mario Bros<br>Game da Pirâmide de Maslow 🎮</h1>
+        <p class="intro-text">🌟 Descubra suas necessidades através de um questionário interativo estilo Nintendo! 🌟</p>
+        <div class="pyramid-preview"></div>
+        <p class="description">
+          🚀 Responda 30 perguntas sobre suas necessidades e veja sua Pirâmide de Maslow personalizada!<br>
+          🎯 O game avalia 5 níveis: Fisiológicas, Segurança, Sociais, Estima e Autorrealização.<br>
+          🏆 Colete moedas, ganhe pontos e desbloqueie power-ups!
+        </p>
+        <button id="start-game" class="btn primary-btn">🎮 Começar Game 🎮</button>
+      </div>
+    </div>
+
+    <!-- Question Section -->
+    <div id="question-section" class="game-section">
+      <div class="content-container">
+        <div class="progress-header">
+          <div class="level-indicator">
+            <span id="current-level-name">🔥 Necessidades Fisiológicas 🔥</span>
+            <div class="level-color-bar" id="level-color-bar"></div>
+          </div>
+          <div class="question-counter">
+            Pergunta <span id="current-question">1</span> de 30
+          </div>
+        </div>
+        
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="question-container">
+          <h2 id="question-text">🎮 Carregando pergunta... 🎮</h2>
+          
+          <div class="answers-container">
+            <label class="answer-option">
+              <input type="radio" name="answer" value="1">
+              <span class="option-text">Nunca</span>
+              <span class="emoji">😞</span>
+            </label>
+            <label class="answer-option">
+              <input type="radio" name="answer" value="2">
+              <span class="option-text">Raramente</span>
+              <span class="emoji">😐</span>
+            </label>
+            <label class="answer-option">
+              <input type="radio" name="answer" value="3">
+              <span class="option-text">Às vezes</span>
+              <span class="emoji">🙂</span>
+            </label>
+            <label class="answer-option">
+              <input type="radio" name="answer" value="4">
+              <span class="option-text">Frequentemente</span>
+              <span class="emoji">😊</span>
+            </label>
+            <label class="answer-option">
+              <input type="radio" name="answer" value="5">
+              <span class="option-text">Sempre</span>
+              <span class="emoji">😄</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="navigation-buttons">
+          <button id="prev-question" class="btn secondary-btn">⬅️ Anterior</button>
+          <button id="next-question" class="btn primary-btn">Próxima ➡️</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" class="game-section">
+      <div class="content-container">
+        <h1>🏆 Sua Pirâmide de Maslow 🏆</h1>
+        <div class="results-container">
+          <div class="pyramid-container">
+            <div id="pyramid-visualization" class="pyramid-visual">
+              <div class="pyramid-level" data-level="5">
+                <span class="level-label">⭐ Autorrealização</span>
+                <div class="level-fill" id="level-5-fill"></div>
+                <span class="level-percentage" id="level-5-percentage">0%</span>
+              </div>
+              <div class="pyramid-level" data-level="4">
+                <span class="level-label">🏆 Estima</span>
+                <div class="level-fill" id="level-4-fill"></div>
+                <span class="level-percentage" id="level-4-percentage">0%</span>
+              </div>
+              <div class="pyramid-level" data-level="3">
+                <span class="level-label">❤️ Sociais</span>
+                <div class="level-fill" id="level-3-fill"></div>
+                <span class="level-percentage" id="level-3-percentage">0%</span>
+              </div>
+              <div class="pyramid-level" data-level="2">
+                <span class="level-label">🛡️ Segurança</span>
+                <div class="level-fill" id="level-2-fill"></div>
+                <span class="level-percentage" id="level-2-percentage">0%</span>
+              </div>
+              <div class="pyramid-level" data-level="1">
+                <span class="level-label">🍄 Fisiológicas</span>
+                <div class="level-fill" id="level-1-fill"></div>
+                <span class="level-percentage" id="level-1-percentage">0%</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="interpretation-container">
+            <h3>🎯 Interpretação dos Resultados 🎯</h3>
+            <div id="interpretations">
+              <!-- Interpretations will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+        
+        <div class="final-actions">
+          <button id="restart-game" class="btn primary-btn">🔄 Refazer Avaliação 🔄</button>
+          <button id="share-results" class="btn secondary-btn">📤 Compartilhar e Enviar para GitHub 📤</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script type="module" src="data.js"></script>
+  <script type="module" src="audio.js"></script>
+  <script type="module" src="ui.js"></script>
+  <script type="module" src="maslow-assessment.js"></script>
+</body>
+</html>
