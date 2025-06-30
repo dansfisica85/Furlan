@@ -150,92 +150,28 @@ export const levelNames = {
 2. **Setup**: Event listeners são configurados
 3. **UI**: Interface inicial é exibida com animações
 
-### 📝 Durante o Questionário
+## 🔧 Funcionamento Detalhado do Código
 
-1. **Exibição**: Pergunta atual é mostrada com animações
-2. **Interação**: Usuário seleciona resposta (1-5 escala Likert)
-3. **Feedback**: Sons e efeitos visuais são reproduzidos
-4. **Pontuação**: Score é atualizado (valor da resposta × 10)
-5. **Progressão**: Barra de progresso e contador são atualizados
+### 📋 Estrutura de Dados
 
-### 📊 Cálculo dos Resultados
+O aplicativo funciona com base em uma estrutura bem definida de dados:
 
 ```javascript
-// Para cada nível da pirâmide:
-const levelScore = levelAnswers.reduce((sum, answer) => sum + answer, 0);
-const maxPossible = levelAnswers.length * 5; // Máximo possível
-const percentage = (levelScore / maxPossible) * 100;
-```
+// data.js - Define todas as perguntas e configurações
+export const questions = [
+    { level: 1, text: "Pergunta sobre necessidades fisiológicas..." },
+    { level: 2, text: "Pergunta sobre segurança..." },
+    // ... 30 perguntas divididas em 5 níveis
+];
 
-### 🎨 Visualização da Pirâmide
+export const levelNames = {
+    1: "Necessidades Fisiológicas",
+    2: "Necessidades de Segurança", 
+    3: "Necessidades Sociais",
+    4: "Necessidades de Estima",
+    5: "Necessidades de Autorrealização"
+};
 
-- **Representação visual**: Pirâmide com 5 níveis coloridos
-- **Percentuais**: Cada nível mostra sua porcentagem de satisfação
-- **Interpretações**: Texto explicativo para cada nível baseado no resultado
-
-### 📤 Funcionalidades Avançadas
-
-- **Compartilhamento**: Geração de imagem/texto dos resultados
-- **Integração GitHub**: Envio opcional de resultados para repositório
-- **Responsividade**: Adaptação para dispositivos móveis
-
-## 🎮 Experiência do Usuário
-
-### 🔊 Feedback Sonoro
-
-- **Coin Sound**: Ao selecionar resposta
-- **Power-up Sound**: Ao completar nível
-- **Jump Sound**: Navegação entre seções
-- **Completion Sound**: Finalização do questionário
-
-### ✨ Efeitos Visuais
-
-- **Animações CSS**: Transições suaves entre elementos
-- **Floating Elements**: Moedas e power-ups flutuantes
-- **Progress Effects**: Celebração visual ao atingir marcos
-- **Color Coding**: Cada nível tem cor específica
-
-### 📱 Responsividade
-
-- **Mobile-first**: Otimizado para dispositivos móveis
-- **Touch-friendly**: Botões grandes para toque
-- **Viewport adaptivo**: Ajuste automático do layout
-
-## 🛠️ Tecnologias Utilizadas
-
-- **HTML5**: Estrutura semântica
-- **CSS3**: Estilos, animações e responsividade
-- **JavaScript ES6+**: Módulos, classes e funcionalidades modernas
-- **Web Audio API**: Geração de sons programaticamente
-- **CSS Grid/Flexbox**: Layout responsivo
-- **CSS Animations**: Efeitos visuais fluidos
-
-## 🚀 Como Executar
-
-1. **Clone o repositório**
-2. **Abra o index.html** em um navegador moderno
-3. **Certifique-se** de que os arquivos estão no mesmo diretório
-4. **Interaja** com a aplicação clicando em "Começar Game"
-
-## 🎯 Personalização
-
-### 🔧 Configurações Ajustáveis
-
-No arquivo `maslow-assessment.js`, existem comentários `@tweakable` indicando valores que podem ser facilmente modificados:
-
-```javascript
-/* @tweakable GitHub repository owner/username */
-this.githubOwner = 'your-username';
-
-/* @tweakable GitHub repository name */
-this.githubRepo = 'maslow-results';
-```
-
-### 🎨 Temas e Cores
-
-As cores dos níveis podem ser modificadas no arquivo `data.js`:
-
-```javascript
 export const levelColors = {
     1: '#FF6B35',  // Fisiológicas - Laranja
     2: '#F7931E',  // Segurança - Amarelo-laranja
@@ -245,6 +181,323 @@ export const levelColors = {
 };
 ```
 
+### 🏗️ Arquitetura Principal
+
+#### 1. **Classe MaslowAssessment** (Controlador Principal)
+
+```javascript
+class MaslowAssessment {
+    constructor() {
+        this.currentQuestionIndex = 0;    // Controla pergunta atual (0-29)
+        this.answers = [];                // Array com respostas [1,2,3,4,5]
+        this.results = {};               // Resultados por nível {1: 85%, 2: 70%...}
+        this.score = 0;                  // Pontuação total do jogador
+        this.ui = new UIManager();       // Gerenciador de interface
+    }
+    
+    // Ciclo principal do jogo:
+    startGame() → showQuestion() → processAnswer() → calculateResults() → showResults()
+}
+```
+
+**Fluxo de Execução:**
+
+1. **startGame()**: Inicializa o questionário, mostra primeira pergunta
+2. **showQuestion(index)**: Exibe pergunta específica com animações
+3. **processAnswer(value)**: Processa resposta, adiciona pontos, avança
+4. **calculateResults()**: Calcula percentuais por nível da pirâmide
+5. **showResults()**: Exibe pirâmide final com interpretações
+
+#### 2. **Sistema de UI Modular**
+
+```javascript
+// ui.js - Coordenador geral
+export class UIManager {
+    constructor() {
+        this.components = new UIComponents();    // Elementos base
+        this.effects = new UIEffects();          // Efeitos visuais
+        this.results = new UIResults();          // Tela de resultados
+    }
+}
+
+// ui-base-components.js - Elementos básicos
+export class UIComponents {
+    getElements() {
+        return {
+            gameContainer: document.getElementById('game-container'),
+            introSection: document.getElementById('intro-section'),
+            questionSection: document.getElementById('question-section'),
+            // ... outros elementos
+        };
+    }
+}
+
+// ui-effects.js - Animações e efeitos
+export class UIEffects {
+    createPowerUpEffect(element) {
+        // Cria animação de power-up no elemento
+    }
+    
+    showSoundEffect(soundType) {
+        // Reproduz efeito sonoro correspondente
+    }
+}
+```
+
+### 🎯 Sistema de Pontuação
+
+```javascript
+// Cada resposta vale pontos baseado no valor selecionado
+document.addEventListener('change', (e) => {
+    if (e.target.type === 'radio' && e.target.name === 'answer') {
+        const answerValue = parseInt(e.target.value); // 1, 2, 3, 4 ou 5
+        this.score += answerValue * 10;               // Multiplica por 10
+        this.updateScoreDisplay();                    // Atualiza display
+        audio.playCoinSound();                        // Som de moeda
+    }
+});
+
+// Pontuação máxima possível: 30 perguntas × 5 pontos × 10 = 1500 pontos
+```
+
+### 📊 Cálculo dos Resultados
+
+```javascript
+calculateResults() {
+    this.results = {};
+    
+    // Para cada nível da pirâmide (1-5)
+    for (let level = 1; level <= 5; level++) {
+        // Filtra perguntas do nível atual
+        const levelQuestions = this.questions.filter(q => q.level === level);
+        
+        // Pega respostas correspondentes
+        const levelAnswers = [];
+        levelQuestions.forEach((question, index) => {
+            const questionIndex = this.questions.indexOf(question);
+            levelAnswers.push(this.answers[questionIndex]);
+        });
+        
+        // Calcula percentual de satisfação
+        const levelScore = levelAnswers.reduce((sum, answer) => sum + answer, 0);
+        const maxPossible = levelAnswers.length * 5; // 6 perguntas × 5 pontos = 30
+        const percentage = Math.round((levelScore / maxPossible) * 100);
+        
+        this.results[level] = {
+            score: levelScore,      // Pontuação bruta (6-30)
+            percentage: percentage, // Percentual (20-100%)
+            maxPossible: maxPossible,
+            interpretation: this.getInterpretation(level, percentage)
+        };
+    }
+}
+```
+
+### 🎨 Sistema de Renderização da Pirâmide
+
+```javascript
+// ui-results.js
+renderPyramid() {
+    const pyramid = document.getElementById('pyramid-display');
+    pyramid.innerHTML = '';
+    
+    // Renderiza cada nível da pirâmide (5 → 1, de cima para baixo)
+    for (let level = 5; level >= 1; level--) {
+        const levelData = this.results[level];
+        const levelElement = document.createElement('div');
+        
+        levelElement.className = `pyramid-level level-${level}`;
+        levelElement.style.backgroundColor = this.levelColors[level];
+        levelElement.style.width = `${20 + (level * 16)}%`; // Largura proporcional
+        
+        levelElement.innerHTML = `
+            <span class="level-name">${this.levelNames[level]}</span>
+            <span class="level-percentage">${levelData.percentage}%</span>
+        `;
+        
+        pyramid.appendChild(levelElement);
+        
+        // Animação de entrada com delay
+        setTimeout(() => {
+            levelElement.classList.add('visible');
+        }, (5 - level) * 200);
+    }
+}
+```
+
+### 🔊 Sistema de Áudio
+
+```javascript
+// audio.js - Geração programática de sons
+export function playCoinSound() {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    // Frequências que imitam o som de moeda do Mario
+    oscillator.frequency.setValueAtTime(1318.51, audioContext.currentTime);
+    oscillator.frequency.setValueAtTime(1567.98, audioContext.currentTime + 0.1);
+    
+    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.3);
+}
+```
+
+### 🎮 Integração com Elementos Mario Bros
+
+```javascript
+// Elementos visuais flutuantes
+createFloatingElements() {
+    const gameContainer = document.getElementById('game-container');
+    
+    // Cria moedas flutuantes
+    for (let i = 0; i < 5; i++) {
+        const coin = document.createElement('div');
+        coin.className = 'floating-coin';
+        coin.innerHTML = '🪙';
+        coin.style.left = Math.random() * 100 + '%';
+        coin.style.animationDelay = Math.random() * 5 + 's';
+        gameContainer.appendChild(coin);
+    }
+    
+    // Cria power-ups flutuantes
+    const powerUpEmojis = ['🍄', '🌟', '🔥', '⭐', '💎'];
+    powerUpEmojis.forEach((emoji, index) => {
+        const powerUp = document.createElement('div');
+        powerUp.className = 'floating-powerup';
+        powerUp.innerHTML = emoji;
+        powerUp.style.right = (index * 20) + '%';
+        powerUp.style.animationDelay = (index * 1.5) + 's';
+        gameContainer.appendChild(powerUp);
+    });
+}
+```
+
+### 📱 Sistema de Responsividade
+
+```css
+/* styles.css - Design mobile-first */
+.answer-option {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 10px;
+    min-height: 60px; /* Touch-friendly */
+    transition: all 0.3s ease;
+}
+
+/* Tablet e desktop */
+@media (min-width: 768px) {
+    .answer-option {
+        min-height: 50px;
+        padding: 0.8rem;
+    }
+}
+
+/* Desktop grande */
+@media (min-width: 1024px) {
+    .content-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+```
+
+### 🔄 Gerenciamento de Estado
+
+```javascript
+// Estado da aplicação é mantido na classe principal
+class MaslowAssessment {
+    constructor() {
+        // Estado atual do jogo
+        this.currentQuestionIndex = 0;  // Pergunta atual (0-29)
+        this.answers = [];              // Respostas do usuário
+        this.results = {};             // Resultados calculados
+        this.isTransitioning = false;  // Previne cliques duplos
+        this.score = 0;                // Pontuação total
+    }
+    
+    // Métodos para atualizar estado
+    updateState(newAnswerValue) {
+        this.answers[this.currentQuestionIndex] = newAnswerValue;
+        this.score += newAnswerValue * 10;
+        this.currentQuestionIndex++;
+        this.saveProgress(); // Salva no localStorage
+    }
+    
+    // Persistência local
+    saveProgress() {
+        localStorage.setItem('maslow-progress', JSON.stringify({
+            currentQuestion: this.currentQuestionIndex,
+            answers: this.answers,
+            score: this.score
+        }));
+    }
+    
+    loadProgress() {
+        const saved = localStorage.getItem('maslow-progress');
+        if (saved) {
+            const data = JSON.parse(saved);
+            this.currentQuestionIndex = data.currentQuestion;
+            this.answers = data.answers;
+            this.score = data.score;
+        }
+    }
+}
+```
+
+### 🚀 Inicialização e Configuração
+
+```javascript
+// Ponto de entrada da aplicação
+document.addEventListener('DOMContentLoaded', () => {
+    // Instancia a aplicação principal
+    const assessment = new MaslowAssessment();
+    
+    // Configura event listeners globais
+    setupGlobalEventListeners();
+    
+    // Inicializa efeitos visuais
+    initializeVisualEffects();
+    
+    // Carrega progresso salvo (se existir)
+    assessment.loadProgress();
+    
+    // Ativa seção inicial
+    assessment.ui.showSection('intro-section');
+});
+
+// Event listeners globais
+function setupGlobalEventListeners() {
+    // Previne zoom em inputs (mobile)
+    document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+            e.preventDefault();
+        }
+    });
+    
+    // Gerencia orientação da tela
+    window.addEventListener('orientationchange', () => {
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 500);
+    });
+}
+```
+
+Este sistema modular permite fácil manutenção e extensão, mantendo a separação de responsabilidades entre lógica de negócio, interface do usuário, efeitos visuais e gerenciamento de dados.
+
 ---
 
 **Desenvolvido com 💖 e inspirado no universo Mario Bros para tornar a psicologia mais divertida e acessível!**
+**Created By BRUTECH®**
+**Email: professordavi85@gmail.com**
+
+---
