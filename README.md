@@ -498,6 +498,6 @@ Este sistema modular permite fácil manutenção e extensão, mantendo a separa�
 
 **Desenvolvido com 💖 e inspirado no universo Mario Bros para tornar a psicologia mais divertida e acessível!**
 **Created By BRUTECH®**
-**Email: professordavi85@gmail.com**
-
+**Email: <professordavi85@gmail.com>**
+@2025
 ---
